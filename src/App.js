@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 import './App.css';
-
-
-
+import { Route, Switch } from 'react-router-dom';
+import Auth from './Auth.jsx';
+import MessageList from './MessageList.jsx'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <React.Fragment>
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">Kwitter</h1>
+         </header>
+       </div>
+
+        <Switch>
+
+          <Route 
+            path="/"
+            render={props => <Auth {...props} />} />
+          <Route 
+            path="/messages"
+            render={props => <MessageList {...props} />} />
+        </Switch>
+      </React.Fragment>
     );
   }
 }
