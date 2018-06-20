@@ -1,0 +1,17 @@
+[
+    {
+        "message": {
+            "id": 1,
+            "text": "This is a sequelize-backed gabble api",
+            "userId": 1
+            
+        }
+    },
+    {
+        "message": {
+            "id": 1,
+            "text": "Test Message number 2",
+            "userId": 2
+        }
+    } 
+]

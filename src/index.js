@@ -15,7 +15,6 @@ let store = createStore(reducer,
 
 render(
   <BrowserRouter>
-    {/* <Provider> */}
     <Provider store={store}>
       <App />
     </Provider>
