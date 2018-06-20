@@ -1,29 +1,28 @@
-import { ADD_MESSAGE } from './actions.js'
-import messageList from './messageList.json'
-
-
-
+import { ADD_MESSAGE, ADD_USER } from './actions.js'
 const initialState = {
-    // loggedIn: false,
-    messages: messageList,
-    text: ""
+    text: "",
+    token: ""
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
 
-            if (!action.payload.length) {
-                return;
-            }
+            
 
-            return {
-                ...state, messages: [...state.messages, {
-                    "id": 1,
-                    "text": action.payload,
-                    "userId": state.messages.length + 1
-                }]
+            let newState = state;
+
+            newState.text = action.payload;
+
+                return newState;
+        case ADD_USER:
+            
+            if (action.payload.success) {
+                let newState = state;
+                newState.token = action.payload.token;
+                return newState;
             }
+            break;
             default:
                 return state;
     }
