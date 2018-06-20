@@ -38,7 +38,7 @@ class MessageList extends Component {
           </header>
           <section className="main">
             <ul>
-              {messages.map(message => <MessageItem messages={messages} id={message.id} key={message.id} value={message.message.text} />)}
+              {messages.map(message => <MessageItem messages={messages} id={message.id} key={message.id} value={message.text} />)}
             </ul>
           </section>
         </React.Fragment>
