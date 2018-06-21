@@ -110,3 +110,5 @@ class Auth extends Component {
   }
 
   export default withRouter(connect(mapStateToProps)(Auth));
+
+  // export default Auth;
