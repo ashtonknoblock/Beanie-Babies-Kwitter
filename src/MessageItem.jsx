@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getMessages } from './actions.js';
+// import { getMessages } from './actions.js';
 
 class MessageItem extends Component {
 
-  componentDidMount() {
-    fetch("https://kwitter-api.herokuapp.com/messages")
-    .then(response => response.json())
-    .then(data => {
-      this.props.dispatch(getMessages(data));
-     })
-  }
+  // componentDidMount() {
+  //   fetch("https://kwitter-api.herokuapp.com/messages")
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     this.props.dispatch(getMessages(data));
+  //    })
+  // }
+
+
     render() {
-      const { messageItem, token, key } = this.props;
-      console.log(messageItem)
+      const { messageItem, index, id } = this.props;
       return (
         <React.Fragment>
-          <li>
+          
             <div>
-              <p>{messageItem.messages.text}</p>
+              
+              <p><Link to={`/messages/${id}`}>{id + " -- " + messageItem.messages[index].text}</Link></p>
+              
             </div>
-          </li>  
+            
         </React.Fragment>
       )
     }

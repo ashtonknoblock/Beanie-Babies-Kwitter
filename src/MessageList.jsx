@@ -28,6 +28,7 @@ class MessageList extends Component {
     this.setState({
       [field]: evt.target.value
     })
+    
   }
 
 
@@ -36,22 +37,26 @@ class MessageList extends Component {
 
     
 
+  
+
     const postMessageOptions = {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + this.props.token
+        "Authorization": `Bearer ${this.props.token.token}`
       },
-      // credentials: "same-origin",
       body: JSON.stringify({text: this.state.text})
   }
 
-      fetch('https://kwitter-api.herokuapp.com/messages', postMessageOptions)
-        .then(response => console.log(response))
+  fetch('https://kwitter-api.herokuapp.com/messages', postMessageOptions)
+  .then(data => {
+    this.setState({
+      text: ""
+    })
+  })
         
-
-    }
+}
 
     fetchLogout = (e) => {
       this.props.dispatch(logout())
@@ -60,28 +65,30 @@ class MessageList extends Component {
     
   
     render() {
-
-      const { messageItem, token } = this.props;
-      console.log(token);
+      
+      const { messageItem } = this.props;
+      // console.log(token);
       return (
         <React.Fragment>
 
           <header className="header">
             <h1>New Kweet</h1>
-            <form onSubmit={this.handleSubmitFetch}>
+            <form>
               <input
                 id="input"
+                value={this.state.text}
                 placeholder="What's on your mind?"
                 className="new-message"
                 onChange={this.textInputChange("text")}
                 autoFocus
               />
+              <button type="submit" onClick={this.handleSubmitFetch}><Link to="/messages">Submit Message</Link></button>
             </form>
             <button type="submit" onClick={this.fetchLogout}><Link to="/">Log Out</Link></button>
           </header>
           <section className="main">
             <ul>
-              {messageItem.messages.map(message => <MessageItem key={message.id} /> ) }
+              {messageItem.messages.map((message, i) => <MessageItem key={i} index={i} id={message.id}/> ) }
             </ul>
           </section>
         </React.Fragment>

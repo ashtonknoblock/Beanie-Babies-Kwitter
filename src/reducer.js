@@ -1,7 +1,7 @@
 import { ADD_MESSAGE, ADD_USER, INPUT_CHANGE, LOGOUT, GET_MESSAGE } from './actions.js'
 const initialState = {
     text: "",
-    token: "",
+    token: {token: ""},
     messageItem: {messages: []},
 }
 
@@ -9,10 +9,7 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
 
-            
-
             let newState = state;
-
             newState.text = action.payload;
 
                 return newState;
@@ -20,7 +17,7 @@ const reducer = (state = initialState, action) => {
             
             if (action.payload.success) {
                 let newState = state;
-                newState.token = action.payload.token;
+                newState.token.token = action.payload.token;
                 return newState;
             }
             break;
