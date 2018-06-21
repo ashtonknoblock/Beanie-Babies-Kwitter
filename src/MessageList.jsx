@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './reducer.js';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
-import { addMessage } from './actions.js'
+import { inputChange } from './actions.js'
 
 
 
@@ -20,12 +20,17 @@ class MessageList extends Component {
   }
 
 
-  handleSubmitFetch = (e) => {
+  handleSubmitFetch = e => {
     e.preventDefault();
+
     
-    let inputField = document.getElementById("input");
-    this.props.dispatch(addMessage(inputField.value))
+    
+    // let inputField = document.getElementById("input");
+    // this.props.dispatch(addMessage(inputField.value))
+
+    console.log(this.state.text);
     console.log(this.props.token);
+    
 
     const postMessageOptions = {
       method: "POST",
@@ -34,15 +39,14 @@ class MessageList extends Component {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + this.props.token
       },
-      body: JSON.stringify({
-        text: this.props.text
-      })
+      // credentials: "same-origin",
+      body: JSON.stringify({text: this.props.text})
   }
 
       fetch('https://kwitter-api.herokuapp.com/messages', postMessageOptions)
         .then(response => response.json())
-        .then(data => {
-          console.log(data);
+        .then(response => {
+          console.log(response);
         })
 
     }
@@ -79,8 +83,9 @@ class MessageList extends Component {
     return {
       
         token: state.token,
-        text: state.text
+       
     }
   }
+  
 
   export default withRouter(connect(mapStateToProps)(MessageList));
