@@ -3,6 +3,7 @@ import './App.css';
 import MessageList from './MessageList.jsx'
 import { Route, Switch, Link } from 'react-router-dom';
 import Auth from './Auth.jsx';
+import IndividualItem from './individualMessage.jsx';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -24,16 +25,15 @@ class App extends Component {
          <li>
            <Link to="/messages">Messages</Link>
         </li>
+    
        </ul>
 
         <Switch>
 
-          <Route 
-            exact path="/"
-            render={props => <Auth {...props} />} />
-          <Route 
-            path="/messages"
-            render={props => <MessageList {...props} />} />
+          <Route exact path="/" component={Auth}/>
+          <Route exact path="/messages" component={MessageList}/>
+          <Route path="/messages/:id" component={IndividualItem}/>
+
         </Switch>
 
       </React.Fragment>

@@ -4,15 +4,22 @@ import './reducer.js';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 
+const initialState = {
+  
+    regUsername: "",
+    regPassword: "",
+    displayName: "",
+    username: "",
+    password: ""
 
+ 
+}
 
 class Auth extends Component {
 
- state = {
-    username: "",
-    password: "",
-    displayName: ""
- }
+
+
+ state = initialState 
 
   inputChange = field => evt => {
     this.setState({ 
@@ -40,7 +47,6 @@ class Auth extends Component {
   .then(response => response.json())
   .then(data => {
     this.props.dispatch(addUser(data));
-    console.log(data)
   })
   }
 
@@ -50,6 +56,8 @@ class Auth extends Component {
 
   fetchRegister = (e) => {
     e.preventDefault();
+
+
   
     const registerOptions = {
       method: "POST",
@@ -58,18 +66,18 @@ class Auth extends Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
+        username: this.state.regUsername,
+        password: this.state.regPassword,
         displayName: this.state.displayName
       }),
   }
   
     fetch('https://kwitter-api.herokuapp.com/auth/register', registerOptions)
-    .then(response => response.json())
+    
     .then(data => {
-      console.log(data);
-
+      this.setState(initialState)
     })
+    
   }
 
     render() {
@@ -78,17 +86,17 @@ class Auth extends Component {
          <div> 
           REGISTER
             <form onSubmit={this.fetchRegister} action="/">
-              Username:<input value={this.state.username} onChange={this.inputChange("username")} required></input>
-              Password:<input type="password" value={this.state.password} onChange={this.inputChange("password")} required></input>
-              Display Name:<input value={this.state.displayName} onChange={this.inputChange("displayName")} required></input>
+              Username:<input className="reg" value={this.state.regUsername} onChange={this.inputChange("regUsername")} required></input>
+              Password:<input className="reg" type="password" value={this.state.regPassword} onChange={this.inputChange("regPassword")} required></input>
+              Display Name:<input className="reg" value={this.state.displayName} onChange={this.inputChange("displayName")} required></input>
               <button type="submit">Register</button>
             </form>
           </div>
           <div>
             SIGN IN
             <form>
-              Username:<input value={this.state.username} onChange={this.inputChange("username")} required></input>
-              Password:<input type="password" value={this.state.password} onChange={this.inputChange("password")} required></input>
+              Username:<input className="log" value={this.state.username} onChange={this.inputChange("username")} required></input>
+              Password:<input className="log" type="password" value={this.state.password} onChange={this.inputChange("password")} required></input>
               <input type="hidden" name="redirect" value="www.google.com"></input>
               <button type="submit" onClick={this.fetchLogin}><Link to="/messages">Sign In</Link></button>
             </form>
