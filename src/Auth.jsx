@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { addUser } from './actions.js'
 import './reducer.js';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 
 
@@ -42,8 +42,6 @@ class Auth extends Component {
     this.props.dispatch(addUser(data));
     console.log(data)
   })
-
-
   }
 
 
@@ -88,11 +86,11 @@ class Auth extends Component {
           </div>
           <div>
             SIGN IN
-            <form onSubmit={this.fetchLogin}>
+            <form>
               Username:<input value={this.state.username} onChange={this.inputChange("username")} required></input>
               Password:<input type="password" value={this.state.password} onChange={this.inputChange("password")} required></input>
               <input type="hidden" name="redirect" value="www.google.com"></input>
-              <button type="submit">Sign In</button>
+              <button type="submit" onClick={this.fetchLogin}><Link to="/messages">Sign In</Link></button>
             </form>
           </div>
         </React.Fragment>

@@ -1,6 +1,7 @@
 export const ADD_MESSAGE = "ADD_MESSAGE";
 export const INPUT_CHANGE = "INPUT_CHANGE";
 export const ADD_USER = "ADD_USER";
+export const LOGOUT = "LOGOUT";
 
 
 export const addMessage = (text) => {
@@ -22,6 +23,12 @@ export const inputChange = (text) => {
     return {
         type: INPUT_CHANGE,
         payload: text
+    }
+}
+
+export const logout = () => {
+    return {
+        type: LOGOUT
     }
 }
 

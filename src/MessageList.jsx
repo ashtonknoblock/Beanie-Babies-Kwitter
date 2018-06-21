@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import './reducer.js';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
-import { inputChange } from './actions.js'
+import { withRouter, Link } from 'react-router-dom'
+import { logout } from './actions.js'
 
 
 
 
 class MessageList extends Component {
+
+  componentDidMount() {
+    fetch("https://kwitter-api.herokuapp.com/messages")
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+    })
+  }
 
   state = {
     text: ""
@@ -23,10 +31,7 @@ class MessageList extends Component {
   handleSubmitFetch = e => {
     e.preventDefault();
 
-    
-    
-    // let inputField = document.getElementById("input");
-    // this.props.dispatch(addMessage(inputField.value))
+
 
     console.log(this.state.text);
     console.log(this.props.token);
@@ -40,20 +45,23 @@ class MessageList extends Component {
         "Authorization": "Bearer " + this.props.token
       },
       // credentials: "same-origin",
-      body: JSON.stringify({text: this.props.text})
+      body: JSON.stringify({text: this.state.text})
   }
 
       fetch('https://kwitter-api.herokuapp.com/messages', postMessageOptions)
-        .then(response => response.json())
-        .then(response => {
-          console.log(response);
-        })
+        .then(response => console.log(response))
+        
 
+    }
+
+    fetchLogout = (e) => {
+      this.props.dispatch(logout())
+      
     }
     
   
     render() {
-      // const { messages } = this.props;
+      
       return (
         <React.Fragment>
 
@@ -68,6 +76,7 @@ class MessageList extends Component {
                 autoFocus
               />
             </form>
+            <button type="submit" onClick={this.fetchLogout}><Link to="/">Log Out</Link></button>
           </header>
           <section className="main">
             <ul>

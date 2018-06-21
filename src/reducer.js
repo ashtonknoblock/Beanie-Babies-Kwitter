@@ -1,4 +1,4 @@
-import { ADD_MESSAGE, ADD_USER, INPUT_CHANGE } from './actions.js'
+import { ADD_MESSAGE, ADD_USER, INPUT_CHANGE, LOGOUT } from './actions.js'
 const initialState = {
     text: "",
     token: ""
@@ -27,7 +27,11 @@ const reducer = (state = initialState, action) => {
             let newState1 = state;
             newState1.text = action.payload
             return newState1;
-            // break;
+            
+        case LOGOUT:
+            let newState2 = state;
+            newState2.token = "";
+            return newState2;
             default:
                 return state;
     }
