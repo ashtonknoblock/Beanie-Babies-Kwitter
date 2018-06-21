@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './reducer.js';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
-import { inputChange } from './actions.js'
+import { withRouter, Link } from 'react-router-dom'
+import { logout, getMessages } from './actions.js'
+import MessageItem from './MessageItem.jsx';
 
 
 
@@ -12,6 +13,16 @@ class MessageList extends Component {
   state = {
     text: ""
   }
+
+  componentDidMount() {
+    fetch("https://kwitter-api.herokuapp.com/messages")
+    .then(response => response.json())
+    .then(data => {
+      this.props.dispatch(getMessages(data));
+     })
+  }
+
+  
 
   textInputChange = field => evt => {
     this.setState({
@@ -24,13 +35,6 @@ class MessageList extends Component {
     e.preventDefault();
 
     
-    
-    // let inputField = document.getElementById("input");
-    // this.props.dispatch(addMessage(inputField.value))
-
-    console.log(this.state.text);
-    console.log(this.props.token);
-    
 
     const postMessageOptions = {
       method: "POST",
@@ -40,20 +44,25 @@ class MessageList extends Component {
         "Authorization": "Bearer " + this.props.token
       },
       // credentials: "same-origin",
-      body: JSON.stringify({text: this.props.text})
+      body: JSON.stringify({text: this.state.text})
   }
 
       fetch('https://kwitter-api.herokuapp.com/messages', postMessageOptions)
-        .then(response => response.json())
-        .then(response => {
-          console.log(response);
-        })
+        .then(response => console.log(response))
+        
 
+    }
+
+    fetchLogout = (e) => {
+      this.props.dispatch(logout())
+      
     }
     
   
     render() {
-      // const { messages } = this.props;
+
+      const { messageItem, token } = this.props;
+      console.log(token);
       return (
         <React.Fragment>
 
@@ -68,10 +77,11 @@ class MessageList extends Component {
                 autoFocus
               />
             </form>
+            <button type="submit" onClick={this.fetchLogout}><Link to="/">Log Out</Link></button>
           </header>
           <section className="main">
             <ul>
-              {/* {messages.map(message => <MessageItem messages={messages} id={message.id} key={message.id} value={message.text} />)} */}
+              {messageItem.messages.map(message => <MessageItem key={message.id} /> ) }
             </ul>
           </section>
         </React.Fragment>
@@ -80,9 +90,10 @@ class MessageList extends Component {
   }
 
   const mapStateToProps = (state) => {
+    
     return {
-      
-        token: state.token,
+        messageItem: state.messageItem,
+        token: state.token
        
     }
   }

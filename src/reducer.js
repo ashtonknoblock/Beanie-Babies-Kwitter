@@ -1,7 +1,8 @@
-import { ADD_MESSAGE, ADD_USER, INPUT_CHANGE } from './actions.js'
+import { ADD_MESSAGE, ADD_USER, INPUT_CHANGE, LOGOUT, GET_MESSAGE } from './actions.js'
 const initialState = {
     text: "",
-    token: ""
+    token: "",
+    messageItem: {messages: []},
 }
 
 const reducer = (state = initialState, action) => {
@@ -27,7 +28,15 @@ const reducer = (state = initialState, action) => {
             let newState1 = state;
             newState1.text = action.payload
             return newState1;
-            // break;
+            
+        case LOGOUT:
+            let newState2 = state;
+            newState2.token = "";
+            return newState2;
+        case GET_MESSAGE:
+            let newState3 = state;
+            newState3.messageItem = action.payload;
+            return newState3;
             default:
                 return state;
     }
