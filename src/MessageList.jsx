@@ -2,24 +2,27 @@ import React, { Component } from 'react';
 import './reducer.js';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom'
-import { logout } from './actions.js'
+import { logout, getMessages } from './actions.js'
+import MessageItem from './MessageItem.jsx';
 
 
 
 
 class MessageList extends Component {
 
+  state = {
+    text: ""
+  }
+
   componentDidMount() {
     fetch("https://kwitter-api.herokuapp.com/messages")
     .then(response => response.json())
     .then(data => {
-      console.log(data)
-    })
+      this.props.dispatch(getMessages(data));
+     })
   }
 
-  state = {
-    text: ""
-  }
+  
 
   textInputChange = field => evt => {
     this.setState({
@@ -31,10 +34,6 @@ class MessageList extends Component {
   handleSubmitFetch = e => {
     e.preventDefault();
 
-
-
-    console.log(this.state.text);
-    console.log(this.props.token);
     
 
     const postMessageOptions = {
@@ -61,7 +60,9 @@ class MessageList extends Component {
     
   
     render() {
-      
+
+      const { messageItem, token } = this.props;
+      console.log(token);
       return (
         <React.Fragment>
 
@@ -80,7 +81,7 @@ class MessageList extends Component {
           </header>
           <section className="main">
             <ul>
-              {/* {messages.map(message => <MessageItem messages={messages} id={message.id} key={message.id} value={message.text} />)} */}
+              {messageItem.messages.map(message => <MessageItem key={message.id} /> ) }
             </ul>
           </section>
         </React.Fragment>
@@ -89,9 +90,10 @@ class MessageList extends Component {
   }
 
   const mapStateToProps = (state) => {
+    
     return {
-      
-        token: state.token,
+        messageItem: state.messageItem,
+        token: state.token
        
     }
   }
