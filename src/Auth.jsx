@@ -83,18 +83,18 @@ class Auth extends Component {
     render() {
       return (
         <React.Fragment>
-         <div> 
-          REGISTER
+         <div id="registerForm"> 
             <form onSubmit={this.fetchRegister} action="/">
+            <legend>Register:</legend>
               Username:<input className="reg" value={this.state.regUsername} onChange={this.inputChange("regUsername")} required></input>
               Password:<input className="reg" type="password" value={this.state.regPassword} onChange={this.inputChange("regPassword")} required></input>
               Display Name:<input className="reg" value={this.state.displayName} onChange={this.inputChange("displayName")} required></input>
               <button type="submit">Register</button>
             </form>
           </div>
-          <div>
-            SIGN IN
+          <div id="loginForm">
             <form>
+            <legend>Sign In:</legend>
               Username:<input className="log" value={this.state.username} onChange={this.inputChange("username")} required></input>
               Password:<input className="log" type="password" value={this.state.password} onChange={this.inputChange("password")} required></input>
               <input type="hidden" name="redirect" value="www.google.com"></input>
