@@ -87,3 +87,15 @@ ul {
 #loginFrom{
   margin: 25px;
 }
+
+ul#nav {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  background-color: grey;
+  height: 4vh;
+  margin-top: 0px;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+
+}
