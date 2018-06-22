@@ -25,7 +25,7 @@ class App extends Component {
          </header>
        </div>
        <div id="nav">
-        <ul>
+        <ul id='nav'>
             <div id="homeBtn">
             <button className="btn" type="submit"><Link to="/">Home</Link></button>
             </div>
