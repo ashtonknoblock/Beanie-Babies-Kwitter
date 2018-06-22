@@ -101,7 +101,7 @@ class Auth extends Component {
               <button type="submit" onClick={this.fetchLogin}><Link to="/messages">Sign In</Link></button>
             </form>
           </div>
-        </React.Fragment>
+        </React.Fragment>       
       )
     }
   }
@@ -117,4 +117,4 @@ class Auth extends Component {
 
   export default withRouter(connect(mapStateToProps)(Auth));
 
-  // export default Auth;
+ 
