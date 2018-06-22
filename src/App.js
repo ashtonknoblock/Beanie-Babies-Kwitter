@@ -33,6 +33,10 @@ class App extends Component {
             <button type="submit"><Link to="/messages">Messages</Link></button>
             </div>
 
+            <div id="profileBtn">
+            <button type="submit"><Link to="/messages">Profile</Link></button>
+            </div>
+
             <div id="logoutBtn">
             <button type="submit" onClick={this.fetchLogout}><Link to="/">Log Out</Link></button>
             </div>
