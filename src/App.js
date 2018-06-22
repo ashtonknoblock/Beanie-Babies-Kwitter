@@ -34,7 +34,7 @@ class App extends Component {
             </div>
 
             <div id="profileBtn">
-            <button type="submit"><Link to="/messages">Profile</Link></button>
+            <button type="submit"><Link to="/profile">Profile</Link></button>
             </div>
 
             <div id="logoutBtn">
