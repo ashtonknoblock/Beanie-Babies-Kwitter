@@ -9,8 +9,8 @@ const initialState = {
     regUsername: "",
     regPassword: "",
     displayName: "",
-    username: "",
-    password: ""
+    username: "nick",
+    password: "password"
 
  
 }
