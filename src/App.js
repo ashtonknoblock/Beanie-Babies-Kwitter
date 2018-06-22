@@ -7,8 +7,7 @@ import IndividualItem from './individualMessage.jsx';
 import userProfile from './userProfile.jsx';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './index.css';
-import { logout } from './actions.js';
+import { logout } from './actions';
 class App extends Component {
 
   fetchLogout = (e) => {

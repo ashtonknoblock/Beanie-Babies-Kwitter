@@ -3,31 +3,22 @@ import './App.css';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ProfileItem from './profileItem.jsx';
-
+import { userAction, userMessage } from './actions'
 
 
 class userProfile extends Component {
-
-
-    state = {
-        userInfo: ""
-    }
     
-    componentWillMount() {
+    componentDidMount() {
         fetch("https://kwitter-api.herokuapp.com/users", {
             headers: {
                 "Authorization": `Bearer ${this.props.token.token}`
             }
         })
           .then(response => response.json())
-          
-
-          .then(({user}) => {
-              this.setState(user)
-              
-            }
-            )
-          
+          .then( data => {
+              this.props.dispatch(userAction(data.user.displayName))
+              this.props.dispatch(userMessage(data.user.messages))
+          })
     }
 
 
@@ -35,19 +26,12 @@ class userProfile extends Component {
         
         return (
             <React.Fragment>
-                <h1>{this.state.displayName}</h1>
-                
-                {/* {this.state.messages && <h1>{this.state.messages[0].text}</h1>} */}
-
+                <h1>{this.props.displayName}</h1>
 
                 <ul>
-                {this.state.messages && this.state.messages.map((message, i) => <ProfileItem messages={this.state.messages} key={i} index={i} id={message.id} /> )}
+                    {this.props.messages.map((message, i) => <ProfileItem key={i} index={i} value={this.props.messages[i].text}/> )}
                 </ul>
             </React.Fragment> 
-
-
-
-
 
         )
     }
@@ -55,7 +39,10 @@ class userProfile extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        token: state.token
+        token: state.token,
+        displayName: state.displayName,
+        messages: state.messages
+        
     }
 }
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './reducer.js';
+import './reducer';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom'
-import { getMessages } from './actions.js'
+import { getMessages } from './actions'
 import MessageItem from './MessageItem.jsx';
 
 
