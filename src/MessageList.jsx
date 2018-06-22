@@ -50,6 +50,7 @@ class MessageList extends Component {
   }
 
   fetch('https://kwitter-api.herokuapp.com/messages', postMessageOptions)
+  .then(data=>console.log(data))
   .then(data => {
     this.setState({
       text: ""
@@ -82,7 +83,7 @@ class MessageList extends Component {
                 onChange={this.textInputChange("text")}
                 autoFocus
               />
-              <button type="submit" onClick={this.handleSubmitFetch}><Link to="/messages">Submit Message</Link></button>
+              <button type="submit" onClick={this.handleSubmitFetch}><Link to="/messages">Post Kweet</Link></button>
             </form>
             <button type="submit" onClick={this.fetchLogout}><Link to="/">Log Out</Link></button>
           </header>

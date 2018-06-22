@@ -6,7 +6,7 @@ import Auth from './Auth.jsx';
 import IndividualItem from './individualMessage.jsx';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import './index.css';
 class App extends Component {
 
   render() {
@@ -17,16 +17,16 @@ class App extends Component {
             <h1 className="App-title">Kwitter</h1>
          </header>
        </div>
-
-       <ul>
-         <li>
-           <Link to="/">Root</Link>
-         </li>
-         <li>
-           <Link to="/messages">Messages</Link>
-        </li>
-    
-       </ul>
+       <div id="mainstuff">
+        <ul>
+          <li>
+            <Link to="/">Root</Link>
+          </li>
+          <li>
+            <Link to="/messages">Messages</Link>
+          </li>
+        </ul>
+        
 
         <Switch>
 
@@ -35,6 +35,7 @@ class App extends Component {
           <Route path="/messages/:id" component={IndividualItem}/>
 
         </Switch>
+        </div>
 
       </React.Fragment>
     );
@@ -52,4 +53,3 @@ export default withRouter(connect(mapStateToProps)(App));
 
 
 
-// export default App;
