@@ -7,7 +7,13 @@ import IndividualItem from './individualMessage.jsx';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './index.css';
+import { logout } from './actions.js';
 class App extends Component {
+
+  fetchLogout = (e) => {
+    this.props.dispatch(logout())
+
+  }
 
   render() {
     return (
@@ -17,16 +23,28 @@ class App extends Component {
             <h1 className="App-title">Kwitter</h1>
          </header>
        </div>
-       <div id="mainstuff">
+       <div id="nav">
         <ul>
-          <li>
-            <Link to="/">Root</Link>
-          </li>
-          <li>
-            <Link to="/messages">Messages</Link>
-          </li>
+            <div id="homeBtn">
+            <button type="submit"><Link to="/">Home</Link></button>
+            </div>
+          
+            <div id="messagesBtn">
+            <button type="submit"><Link to="/messages">Messages</Link></button>
+            </div>
+
+            <div id="profileBtn">
+            <button type="submit"><Link to="/profile">Profile</Link></button>
+            </div>
+
+            <div id="logoutBtn">
+            <button type="submit" onClick={this.fetchLogout}><Link to="/">Log Out</Link></button>
+            </div>
+          
         </ul>
+       </div> 
         
+        <div id="mainstuff">
 
         <Switch>
 
