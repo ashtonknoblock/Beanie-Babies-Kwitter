@@ -5,14 +5,15 @@
 
 .App {
   text-align: center;
-  font-family: cursive;
   font-size: 2em;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 #root {
@@ -20,8 +21,7 @@ body {
 }
 
 .main {
-  font-family: 'Courier New', Courier, monospace;
-  ;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 #mainstuff {
@@ -33,9 +33,9 @@ body {
   width: 50vw;
   height: 7vh;
   font-size: 18px;
-  margin: 5px;;
+  margin: 5px;
+  padding: 5px;
 }
-
 
 
 .App-header {
@@ -44,8 +44,6 @@ body {
   padding: 20px;
   color: white;
 }
-
-
 
 .btn {
   background: #3498db;
@@ -65,7 +63,7 @@ body {
   text-decoration: none;
 }
 
-button:hover {
+btn:hover {
   background: #3cb0fd;
   background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
   background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
@@ -78,7 +76,7 @@ button:hover {
 a, a:visited, a:hover, a:active {
   text-decoration: none;
   color: inherit;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 
 ul {
@@ -95,8 +93,18 @@ ul {
 }
 
 
-#profileBtn {
-  height: 10px;
+.profileBtn {
+  margin-left: 5px;
+ 
+}
+
+#deleteButton {
+  height: 25px;
+  width: 40px;
+  border-radius: 30%
+}
+#deleteButton:hover {
+  cursor: pointer;
 }
 
 ul#nav {
@@ -108,4 +116,24 @@ ul#nav {
   margin-top: 0px;
   padding-top: 1vh;
   padding-bottom: 1vh;
+}
+
+input {
+  margin-left: 0.2vw;
+  margin-right: 2vw;
+
+}
+
+form { 
+  background-color:#FFFFFF;
+  border:solid 2px #257BA9;
+  font-size:14px;
+  color:#000000;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+  padding-top:7px;
+  padding-bottom:7px;
+  padding-left:7px;
+  padding-right:7px;
 }

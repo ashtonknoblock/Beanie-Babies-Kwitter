@@ -81,7 +81,7 @@ class MessageList extends Component {
               autoFocus
             />
             
-            <button type="submit" onClick={this.handleSubmitFetch}><Link to="/messages">Post Kweet</Link></button>
+            <button className="btn" type="submit" onClick={this.handleSubmitFetch}><Link to="/messages">Post Kweet</Link></button>
 
           </form>
 

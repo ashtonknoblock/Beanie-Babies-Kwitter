@@ -89,7 +89,7 @@ class Auth extends Component {
               Username:<input className="reg" value={this.state.regUsername} onChange={this.inputChange("regUsername")} required></input>
               Password:<input className="reg" type="password" value={this.state.regPassword} onChange={this.inputChange("regPassword")} required></input>
               Display Name:<input className="reg" value={this.state.displayName} onChange={this.inputChange("displayName")} required></input>
-              <button type="submit">Register</button>
+              <button className="btn" type="submit" onClick="al">Register</button>
             </form>
           </div>
           <div id="loginForm">
@@ -98,7 +98,7 @@ class Auth extends Component {
               Username:<input className="log" value={this.state.username} onChange={this.inputChange("username")} required></input>
               Password:<input className="log" type="password" value={this.state.password} onChange={this.inputChange("password")} required></input>
               <input type="hidden" name="redirect" value="www.google.com"></input>
-              <button type="submit" onClick={this.fetchLogin}><Link to="/messages">Sign In</Link></button>
+              <button className="btn" type="submit" onClick={this.fetchLogin}><Link to="/messages">Sign In</Link></button>
             </form>
           </div>
         </React.Fragment>       
