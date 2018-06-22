@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './reducer.js';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom'
-import { logout, getMessages } from './actions.js'
+import { getMessages } from './actions.js'
 import MessageItem from './MessageItem.jsx';
 
 
@@ -59,11 +59,6 @@ class MessageList extends Component {
 
   }
 
-  // fetchLogout = (e) => {
-  //   this.props.dispatch(logout())
-
-  // }
-
 
   render() {
 
@@ -91,10 +86,6 @@ class MessageList extends Component {
           </form>
 
         </header>
-
-          {/* <div id="logoutBtn">
-          <button type="submit" onClick={this.fetchLogout}><Link to="/">Log Out</Link></button>
-          </div> */}
           
         <section className="main">
           <ul>
