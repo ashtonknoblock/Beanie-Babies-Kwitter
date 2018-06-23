@@ -37,6 +37,10 @@ class App extends Component {
             <button className="btn" type="submit"><Link to="/profile">Profile</Link></button>
             </div>
 
+            {/* <div id="updatePasswordbtn">
+              <button className="btn" type="submit">Update Password</button>
+            </div> */}
+
             <div id="logoutBtn">
             <button className="btn" type="submit" onClick={this.fetchLogout}><Link to="/">Log Out</Link></button>
             </div>

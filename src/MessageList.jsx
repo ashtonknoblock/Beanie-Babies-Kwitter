@@ -35,10 +35,6 @@ class MessageList extends Component {
   handleSubmitFetch = e => {
     e.preventDefault();
 
-
-
-
-
     const postMessageOptions = {
       method: "POST",
       mode: "cors",

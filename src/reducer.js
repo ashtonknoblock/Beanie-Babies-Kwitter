@@ -1,14 +1,14 @@
-import { ADD_MESSAGE, ADD_USER, INPUT_CHANGE, LOGOUT, GET_MESSAGE, USER_ACTION, USER_MESSAGE, DELETE_MESSAGE } from './actions'
+import { ADD_MESSAGE, ADD_USER, INPUT_CHANGE, LOGOUT, GET_MESSAGE, USER_ACTION, USER_MESSAGE, DELETE_MESSAGE, UPDATE_PASSWORD} from './actions'
 const initialState = {
     text: "",
     token: {token: ""},
     messageItem: {messages: []},
     displayName: "",
-    messages: []
-    // profileMessages:  {
-    //     displayName: "",
-    //     messages: []
-    // }
+    messages: [],
+    regUsername: "",
+    regPassword: "",
+    username: "",
+    password: "",
 }
 
 const reducer = (state = initialState, action) => {
@@ -52,8 +52,11 @@ const reducer = (state = initialState, action) => {
         case DELETE_MESSAGE:
             let newState6 = {...state};
             newState6.messages.splice(action.payload, 1);
-            console.log(newState6);
-            // return newState6;
+            return newState6;
+        case UPDATE_PASSWORD:
+            let newState7 = {...state};
+            newState7.password = action.payload;
+            return newState7;
             // break;
             default:
                 return state;

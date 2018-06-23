@@ -6,6 +6,15 @@ export const GET_MESSAGE = "GET_MESSAGE";
 export const DELETE_MESSAGE = "DELETE_MESSAGE";
 export const USER_ACTION = "USER_ACTION";
 export const USER_MESSAGE = "USER_MESSAGE";
+export const UPDATE_PASSWORD = "UPDATE_PASSWORD";
+
+
+export const updatePassword = (data) => {
+    return {
+        type: UPDATE_PASSWORD,
+        payload: data
+}
+}
 
 export const userMessage = (data) => {
     return {

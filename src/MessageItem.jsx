@@ -5,14 +5,6 @@ import { connect } from 'react-redux';
 
 class MessageItem extends Component {
 
-  // componentDidMount() {
-  //   fetch("https://kwitter-api.herokuapp.com/messages")
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     this.props.dispatch(getMessages(data));
-  //    })
-  // }
-
 
     render() {
       const { messageItem, index, id } = this.props;
