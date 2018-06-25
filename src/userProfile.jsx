@@ -3,31 +3,54 @@ import './App.css';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ProfileItem from './profileItem.jsx';
-
+import { userAction, userMessage, updatePassword } from './actions'
 
 
 class userProfile extends Component {
 
-
     state = {
-        userInfo: ""
+        text: ""
+    }
+
+    textInputChange = field => evt => {
+        this.setState({
+            [field]: evt.target.value
+        })
+    }
+
+    updatePassword = (e) => {
+        e.preventDefault();
+
+        const patchMessageOptions = {
+            method: "PATCH",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${this.props.token.token}`
+            },
+            body: JSON.stringify({ password: this.state.text })
+        }
+
+        fetch("https://kwitter-api.herokuapp.com/users", patchMessageOptions)
+        .then(response => response.json())
+        .then(data => {
+            this.props.dispatch(updatePassword(this.state.text))
+        })
+        // .then(data => console.log(data))
+
     }
     
-    componentWillMount() {
+    componentDidMount() {
         fetch("https://kwitter-api.herokuapp.com/users", {
             headers: {
                 "Authorization": `Bearer ${this.props.token.token}`
             }
         })
           .then(response => response.json())
-          
-
-          .then(({user}) => {
-              this.setState(user)
-              
-            }
-            )
-          
+          .then( data => {
+              this.props.dispatch(userAction(data.user.displayName))
+              this.props.dispatch(userMessage(data.user.messages))
+          })
     }
 
 
@@ -35,19 +58,25 @@ class userProfile extends Component {
         
         return (
             <React.Fragment>
-                <h1>{this.state.displayName}</h1>
-                
-                {/* {this.state.messages && <h1>{this.state.messages[0].text}</h1>} */}
 
+                <form>
+                  <input onChange={this.textInputChange("text")}>
+                  
+                  </input>
+
+                  <div id="updatePasswordbtn">
+                    <button onClick={this.updatePassword} className="btn" type="submit">Update Password</button>
+                  </div>
+
+                </form>
+
+
+                <h1>{this.props.displayName}</h1>
 
                 <ul>
-                {this.state.messages && this.state.messages.map((message, i) => <ProfileItem messages={this.state.messages} key={i} index={i} id={message.id} /> )}
+                    {this.props.messages.map((message, i) => <ProfileItem key={i} index={i} value={this.props.messages[i].text}/> )}
                 </ul>
             </React.Fragment> 
-
-
-
-
 
         )
     }
@@ -55,7 +84,10 @@ class userProfile extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        token: state.token
+        token: state.token,
+        displayName: state.displayName,
+        messages: state.messages
+        
     }
 }
 

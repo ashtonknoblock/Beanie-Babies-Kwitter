@@ -7,8 +7,7 @@ import IndividualItem from './individualMessage.jsx';
 import userProfile from './userProfile.jsx';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './index.css';
-import { logout } from './actions.js';
+import { logout } from './actions';
 class App extends Component {
 
   fetchLogout = (e) => {
@@ -37,6 +36,10 @@ class App extends Component {
             <div id="profileBtn">
             <button className="btn" type="submit"><Link to="/profile">Profile</Link></button>
             </div>
+
+            {/* <div id="updatePasswordbtn">
+              <button className="btn" type="submit">Update Password</button>
+            </div> */}
 
             <div id="logoutBtn">
             <button className="btn" type="submit" onClick={this.fetchLogout}><Link to="/">Log Out</Link></button>

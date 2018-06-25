@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { addUser } from './actions.js'
-import './reducer.js';
+import { addUser } from './actions'
+import './reducer';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
+import { updatePassword } from './actions.js'
 
 const initialState = {
   
     regUsername: "",
     regPassword: "",
     displayName: "",
-    username: "nick",
-    password: "password"
+    username: "",
+    password: ""
 
  
 }
@@ -21,9 +22,16 @@ class Auth extends Component {
 
  state = initialState 
 
-  inputChange = field => evt => {
-    this.setState({ 
-      [field]: evt.target.value 
+  // inputChange = field => evt => {
+  //   this.setState({ 
+  //     [field]: evt.target.value 
+  //   })
+  //   this.props.dispatch(updatePassword(this.state.password))
+  // }
+
+  inputChange = field => evt =>{
+    this.setState({
+      [field]: evt.target.value
     })
   }
 
